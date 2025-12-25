@@ -11,8 +11,8 @@ The Key Features of BAYMAX :
 
 BAYMAX - Smart Medical Assistant By : 
 
-  Vetri Suriya P  1137
-  Vignesh B       1138
-  Vignesh M       1139
-  Vignesh M       1140
+  Vetri Suriya P  1137,
+  Vignesh B       1138,
+  Vignesh M       1139,
+  Vignesh M       1140,
   Vigneshwaran D  1141
