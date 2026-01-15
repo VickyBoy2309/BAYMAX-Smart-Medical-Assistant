@@ -1,0 +1,192 @@
+>Figma AI Prompt
+
+Design a modern healthcare web application similar to Apollo Hospitals website but as an all-in-one healthcare platform.
+
+Style:
+- Clean, professional, medical UI
+- White background with blue and green accents
+- Rounded cards, soft shadows
+- Modern sans-serif font
+- Desktop web layout
+
+Header (Sticky):
+- Logo on left
+- Menu items:
+  - Buy Medicines
+  - Doctor Appointment
+  - Lab Tests
+  - Health Records
+  - Insurance Policy
+- Search bar in header: “Search doctor, hospital, medicine”
+- Login / Profile icon on right
+
+Homepage Layout:
+1. Hero Section
+   - Headline: “Find Doctors, Medicines & Healthcare Services Near You”
+   - Location selector (auto detect city)
+   - Search input for illness / doctor / medicine
+   - Primary CTA button: “Find Healthcare”
+
+2. Service Cards Section (5 cards)
+   - Doctor Consultation
+   - Buy Medicines
+   - Lab Tests
+   - Health Records
+   - Insurance
+   Each card with icon and short description
+
+3. Doctor Recommendation Section
+   - Title: “Doctors Near You”
+   - Horizontal cards showing:
+     - Doctor photo
+     - Name
+     - Specialization
+     - Hospital name
+     - Waiting patient count
+     - “Book Appointment” button
+
+4. Pharmacy Section
+   - Title: “Nearby Pharmacies”
+   - Cards showing:
+     - Pharmacy name
+     - Distance
+     - Medicine availability
+     - Price
+     - “Buy Now” button
+
+5. AI Assistant Section
+   - Chatbot UI embedded on right
+   - Title: “Health Assistant”
+   - Prompt examples:
+     - “I have fever and headache”
+     - “Suggest doctor for chest pain”
+
+6. Emergency SOS Section
+   - Red highlighted card
+   - SOS button
+   - Nearest emergency hospital
+   - Emergency contact numbers
+
+Footer:
+- About
+- Privacy Policy
+- Terms
+- Contact
+- Social icons
+
+---------x-----x----------
+>Doctor Appointment Page Prompt
+
+Design a doctor appointment booking page.
+
+Layout:
+- Filter sidebar:
+  - Specialization
+  - Distance
+  - Availability
+- Doctor list on right with:
+  - Profile image
+  - Experience
+  - Waiting count
+  - Book Appointment CTA
+----x-------
+
+>Buy Medicines Page Prompt
+
+Design an online medicine purchasing page.
+
+Layout:
+- Search bar for medicines
+- Medicine cards showing:
+  - Medicine name
+  - Type (tablet, syrup)
+  - Price
+  - Availability
+  - Add to Cart button
+-----x---
+>Health Records Page Prompt
+Design a personal health records dashboard.
+Features:
+- Appointment history
+- Prescriptions
+- Medicine reminders
+- Clean dashboard layout with cards
+
+
+Prompt - 2
+
+🧪 LAB TESTS PAGE (Fully Functional UX)
+Hero Section
+Title: “Book Lab Tests Near You”
+Subtitle explaining home collection & certified labs
+
+Search bar:
+Test name (Blood Test, Thyroid, Sugar, etc.)
+Location selector (auto-detect)
+Search button
+Popular Lab Tests
+
+Card layout showing:
+Test name
+Sample type (Blood / Urine)
+Fasting required (Yes / No)
+Report delivery time
+Price
+“Book Test” button
+Lab Partners Section
+
+Cards for labs with:
+Lab logo
+Rating
+Distance
+Home sample collection badge
+“View Tests” CTA
+Booking Flow (Working State)
+
+Step indicator:
+Select Test
+Choose Date & Time
+Home / Lab Visit
+Payment
+Confirmation success screen
+
+🛡️ INSURANCE POLICY PAGE (Fully Functional UX)
+Hero Section
+Title: “Health Insurance Made Simple”
+Subtitle focusing on coverage, hospitals, and cashless claims
+Insurance Categories
+Card grid:
+Individual Health Insurance
+Family Floater
+Senior Citizen Plans
+Critical Illness Cover
+Each card with icon and “View Plans” button
+Compare Insurance Plans
+
+Comparison table showing:
+Monthly premium
+Coverage amount
+Network hospitals
+Cashless claims
+Waiting period
+Buy / Apply button
+Insurance Workflow (Working State)
+
+Step-based UI:
+Select Plan
+Enter Details
+Upload Documents
+Payment
+Policy Issued
+Claims & Policy Management
+
+Dashboard cards:
+Active policies
+Claim status (Approved / Processing)
+Download policy
+Contact insurer
+Footer Continuity
+Keep the existing footer unchanged
+Ensure all new pages feel seamlessly integrated
+
+The design should appear production-ready, realistic, and suitable for a final-year AI-based healthcare platform.
