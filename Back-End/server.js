@@ -9,14 +9,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Routes (IMPORT FIRST)
+const authRoutes = require("./routes/authRoutes");
+const testProtected = require("./routes/testProtected");
+
+// Routes (USE AFTER IMPORT)
+app.use("/api/auth", authRoutes);
+app.use("/api", testProtected);
+
 // Test Route
 app.get("/", (req, res) => {
   res.send("BAYMAX Backend is working 🚀");
 });
-
-// Routes
-const authRoutes = require("./routes/authRoutes");
-app.use("/api/auth", authRoutes);
 
 // Database + Server
 const PORT = process.env.PORT || 5000;
