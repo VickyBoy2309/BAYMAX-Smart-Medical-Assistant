@@ -1,80 +1,132 @@
-//Registratin Module
 const User = require("../models/User");
+const DoctorProfile = require("../models/DoctorProfile");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// @desc    Register new user
-// @route   POST /api/auth/register
-// @access  Public
+// ==========================================
+// REGISTER USER / DOCTOR
+// ==========================================
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    console.log("REGISTER BODY:", req.body);
+    const {
+      name,
+      email,
+      password,
+      role = "patient",
+      specialization = "",
+      experience = "",
+      hospital = ""
+    } = req.body;
 
-    // 1. Check if user already exists
+    // 1️⃣ Check existing user
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({
+        message: "User already exists"
+      });
     }
 
-    // 2. Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // 2️⃣ Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 3. Create user
+    // 3️⃣ Create user
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
+      role
     });
 
-    // 4. Generate JWT
-    const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
+    // 4️⃣ If Doctor → create DoctorProfile
+    if (role === "doctor") {
+      try {
+        await DoctorProfile.create({
+          userId: user._id,
+          specialization,
+          experience,
+          hospital,
+          approvalStatus: "PENDING"
+        });
+      } catch (profileError) {
+        // Rollback user if profile creation fails
+        await User.findByIdAndDelete(user._id);
+        return res.status(500).json({
+          message: "Doctor profile creation failed"
+        });
+      }
+    }
 
-    res.status(201).json({
-      message: "User registered successfully",
-      token,
+    // 5️⃣ IMPORTANT: DO NOT AUTO-LOGIN ON REGISTER
+    return res.status(201).json({
+      message:
+        role === "doctor"
+          ? "Doctor registered successfully. Waiting for admin approval."
+          : "User registered successfully."
     });
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
+    console.error("REGISTER ERROR:", error);
+    return res.status(500).json({
+      message: "Server error during registration"
+    });
   }
 };
 
-//Login Module
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
+
+// ==========================================
+// LOGIN USER / DOCTOR
+// ==========================================
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Check if user exists
+    // 1️⃣ Find user
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(400).json({
+        message: "Invalid email or password"
+      });
     }
 
-    // 2. Compare password
+    // 2️⃣ Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(400).json({
+        message: "Invalid email or password"
+      });
     }
 
-    // 3. Generate JWT
+    // 3️⃣ If doctor → check approval
+    if (user.role === "doctor") {
+      const doctorProfile = await DoctorProfile.findOne({
+        userId: user._id
+      });
+
+      if (!doctorProfile) {
+        return res.status(403).json({
+          message: "Doctor profile not found"
+        });
+      }
+
+      if (doctorProfile.approvalStatus !== "APPROVED") {
+        return res.status(403).json({
+          message: "Doctor account pending admin approval"
+        });
+      }
+    }
+
+    // 4️⃣ Generate JWT
     const token = jwt.sign(
-      { id: user._id },
+      { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Login successful",
       token,
+      role: user.role,
       user: {
         id: user._id,
         name: user.name,
@@ -83,7 +135,9 @@ exports.loginUser = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
+    console.error("LOGIN ERROR:", error);
+    return res.status(500).json({
+      message: "Server error during login"
+    });
   }
 };
