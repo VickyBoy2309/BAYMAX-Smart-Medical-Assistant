@@ -1,0 +1,269 @@
+/* ================= GENERAL ================= */
+
+.w-full {
+  width: 100%;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ================= HERO ================= */
+
+section {
+  padding: 60px 20px;
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(135deg, #eaf3ff, #ffffff, #e8f7ef);
+}
+
+.max-w-7xl {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.text-gray-900 {
+  color: #222;
+}
+
+.text-blue-600 {
+  color: #1a73e8;
+}
+
+.text-gray-600 {
+  color: #666;
+}
+
+.mb-6 { margin-bottom: 20px; }
+.mb-8 { margin-bottom: 30px; }
+.mt-4 { margin-top: 15px; }
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+
+.bg-white {
+  background: white;
+}
+
+.rounded-2xl {
+  border-radius: 16px;
+}
+
+.rounded-xl {
+  border-radius: 12px;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.shadow-md {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.p-2 { padding: 10px; }
+.p-5 { padding: 20px; }
+.p-6 { padding: 24px; }
+
+.py-16 { padding-top: 60px; padding-bottom: 60px; }
+.py-12 { padding-top: 50px; padding-bottom: 50px; }
+
+.px-6 { padding-left: 20px; padding-right: 20px; }
+
+input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* ================= GRID ================= */
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.md\:grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.lg\:grid-cols-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 992px) {
+  .md\:grid-cols-3,
+  .lg\:grid-cols-5 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================= DOCTOR CARD ================= */
+
+img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+button.bg-blue-600 {
+  background: #1a73e8;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+button.bg-green-600 {
+  background: #34a853;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ================= EMERGENCY ================= */
+
+.bg-gradient-to-br.from-red-500 {
+  background: linear-gradient(135deg, #ff4d4d, #cc0000);
+  color: white;
+}
+
+.text-white {
+  color: white;
+}
+
+/* ================= CHATBOT ================= */
+
+.baymax-robot {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(135deg, #1a73e8, #34a853);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.chat-window {
+  position: fixed;
+  bottom: 110px;
+  right: 30px;
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.chat-header {
+  background: #1a73e8;
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-body {
+  padding: 15px;
+  height: 150px;
+  overflow-y: auto;
+  background: #f4f7fb;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+}
+
+.chat-input button {
+  background: #1a73e8;
+  color: white;
+  padding: 10px 15px;
+}
+
+.chat-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  z-index: 2000;
+}
+
+.chat-full-header {
+  background: #1a73e8;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-full-body {
+  flex: 1;
+  padding: 20px;
+  background: #f4f7fb;
+}
+
+.chat-full-input {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+}

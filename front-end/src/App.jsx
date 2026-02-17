@@ -1,53 +1,54 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import DoctorDashboard from "./pages/DoctorDashboard";
-import Admin from "./pages/Admin";
-import ProtectedRoute from "./components/ProtectedRoute";
+// React imports
+import { Routes, Route } from "react-router-dom";
+//Auth imports
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+//Patient imports
+import PatientHome from "./pages/patient/PatientHome";
+//Doctor imports
+import DoctorHome from "./pages/doctor/DoctorDashboard";
+//Admin imports
+import AdminDashboard from "./pages/admin/AdminDashboard";
+//Routes & Role
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import RoleRedirect from "./components/common/RoleRedirect";
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <Routes>
+      {/* PUBLIC */}
+      <Route path="/" element={<RoleRedirect />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
-        {/* Public Pages */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+      {/* PROTECTED */}
+      <Route
+        path="/patient/home"
+        element={
+          <ProtectedRoute role="patient">
+            <PatientHome />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* Protected Pages */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/doctor/home"
+        element={
+          <ProtectedRoute role="doctor">
+            <DoctorHome />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/doctor-dashboard"
-          element={
-            <ProtectedRoute>
-              <DoctorDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin-dashboard"
-          element={
-            <ProtectedRoute>
-              <Admin />
-            </ProtectedRoute>
-          }
-        />
-
-      </Routes>
-    </Router>
+      <Route
+        path="/admin/home"
+        element={
+          <ProtectedRoute role="admin">
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 }
 
